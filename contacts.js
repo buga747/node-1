@@ -5,7 +5,7 @@ const contactsPath = path.join(__dirname, "./db/contacts.json");
 
 async function listContacts() {
   try {
-    const data = await fs.readFile(contactsPath, "utf-8");
+    const data = await fs.readFile(contactsPath);
     const contacts = JSON.parse(data);
     console.table(contacts);
   } catch (error) {
@@ -15,7 +15,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   try {
-    const data = await fs.readFile(contactsPath, "utf-8");
+    const data = await fs.readFile(contactsPath);
     const contacts = JSON.parse(data);
     const contact = contacts.find(({ id }) => id === contactId);
 
@@ -32,7 +32,7 @@ async function getContactById(contactId) {
 
 async function removeContact(contactId) {
   try {
-    const data = await fs.readFile(contactsPath, "utf-8");
+    const data = await fs.readFile(contactsPath);
     const contacts = JSON.parse(data);
     const idx = contacts.findIndex(({ id }) => id === contactId);
 
@@ -51,7 +51,7 @@ async function removeContact(contactId) {
 
 async function addContact(name, email, phone) {
   try {
-    const data = await fs.readFile(contactsPath, "utf-8");
+    const data = await fs.readFile(contactsPath);
     const contacts = JSON.parse(data);
     const newContact = { id: Date.now(), name, email, phone };
     const newContacts = [...contacts, newContact];
